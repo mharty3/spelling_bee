@@ -7,7 +7,9 @@ app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<h1>Spelling Bee Solver</h1><p>This site is a prototype API for cheating on the NYT Spelling Bee game.</p>"
+    return """<h1>Spelling Bee Solver</h1>
+              <p>This site is a prototype API for helping you out 
+              (aka cheating) on the NYT Spelling Bee game.</p>"""
 
 
 @app.route("/api/spelling_bee", methods=["GET"])
@@ -19,8 +21,12 @@ def api_id():
         letters = request.args['letters']
     else:
         return "Error: No letters provided. Please specify an id."
+    
+    good_words = word_finder.word_finder(letters)
+    pangrams = word_finder.find_pangrams(good_words)
+    data = dict(pangrams=pangrams, all_words=good_words)
 
-    return jsonify(word_finder.word_finder(letters))
+    return jsonify(data)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
