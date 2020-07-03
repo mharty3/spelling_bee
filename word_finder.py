@@ -15,7 +15,7 @@ def check_word(word, allowed_letters):
     
     word = word.lower()
     if len(word) < 4:
-        return False 
+        return True
     if key_letter not in word:
         return False
     if re.search(f'[{bad_letters}]', word):           
