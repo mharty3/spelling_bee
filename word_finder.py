@@ -1,13 +1,6 @@
 import re
 from string import ascii_lowercase
 
-def letters_in_word(letters, word):
-    """Return True if any of letters are in word"""
-    for l in letters:
-        if l in word:
-            return True
-    return False
-
 
 def check_word(word, allowed_letters):
     """
@@ -25,7 +18,7 @@ def check_word(word, allowed_letters):
         return False 
     if key_letter not in word:
         return False
-    if letters_in_word(bad_letters, word):           
+    if re.search(f'[{bad_letters}]', word):           
         return False
     
     return True
@@ -33,10 +26,6 @@ def check_word(word, allowed_letters):
 def word_finder(allowed_letters):
     """
     Return a list of words that meet the critera for the spelling bee game.
-        * The words may only contain the allowed_letters.
-        * The first letter in allowed_letters is the key letter. Returned words
-          must contain it.
-        * Words must be four characters or more in length.
     """
 
     with open('data/norvig_word_list.txt') as f: # http://norvig.com/ngrams/word.list

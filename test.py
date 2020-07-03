@@ -1,45 +1,6 @@
 import unittest
 
-from word_finder import letters_in_word, check_word, word_finder, find_pangrams
-
-class TestLettersInWord(unittest.TestCase):
-    
-    # test string input letters
-    def test_single_letter_is_at_start_of_string(self):
-        result = letters_in_word('a', 'apple')
-        self.assertTrue(result)
-
-
-    def test_single_letter_is_in_string(self):
-        result = letters_in_word('p', 'apple')
-        self.assertTrue(result)
-
-
-    def test_single_letter_not_in_string(self):
-        result = letters_in_word('z', 'apple')
-        self.assertFalse(result)
-
-    
-    def test_multi_letter_string(self):
-        result = letters_in_word('app', 'apple')
-        self.assertTrue(result)
-
-
-    def test_multi_letter_string_not_in_word(self):
-        result = letters_in_word('zxc', 'apple')
-        self.assertFalse(result)
-
-
-    # test list input letters
-    def test_multi_letter_letter_list(self):
-        result = letters_in_word(['a', 'p', 'p'], 'apple')
-        self.assertTrue(result)
-
-
-    def test_multi_letter_letter_list_fail(self):
-        result = letters_in_word(['y', 'z', 'x'], 'apple')
-        self.assertFalse(result)
-
+from word_finder import check_word, word_finder, find_pangrams
 
 class TestCheckWord(unittest.TestCase):
 
