@@ -28,16 +28,15 @@ def word_finder(allowed_letters):
     Return a list of words that meet the critera for the spelling bee game.
     """
 
-    with open('data/norvig_word_list.txt') as f: # http://norvig.com/ngrams/word.list
+    with open('data/norvig_word_list.txt') as f: 
+        # file downloaded from http://norvig.com/ngrams/word.list
         word_list = [word.strip() for word in f.readlines()]
 
-    good_words = list()
-    for word in word_list:
-        if check_word(word, allowed_letters):
-            good_words.append(word)
-
+    good_words = [w for w in word_list if check_word(w, allowed_letters)]
     good_words.sort(key=len)
+
     return good_words
+
 
 def find_pangrams(good_words, n=7):
     """Return a list of pangrams (ie words containing all allowed letters)
