@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, jsonify
 import word_finder
 
 app = Flask(__name__)
@@ -8,19 +8,20 @@ app.config["DEBUG"] = True
 @app.route('/', methods=['GET'])
 def home():
     return """<h1>Spelling Bee Solver</h1>
-              <p>This site is a prototype API for helping you out 
-              (aka cheating) on the NYT Spelling Bee game.</p>"""
+              <p>This site is an API for helping you out 
+               on the NYT Spelling Bee game.</p>"""
 
 
 @app.route("/api/spelling_bee", methods=["GET"])
-def api_id():
+def find_words():
+    
     # check if letters were provided. if so, assign it to variable
     # if not, display an error
 
     if 'letters' in request.args:
         letters = request.args['letters']
     else:
-        return "Error: No letters provided. Please specify an id."
+        return "Error: No letters provided. Please provide some letters."
     
     good_words = word_finder.word_finder(letters)
     pangrams = word_finder.find_pangrams(good_words)
