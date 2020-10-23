@@ -4,9 +4,11 @@ import word_finder
 st.title('NYT Spelling Bee Cheater')
 
 letters = st.text_input("What are today's letters?")
-key_letter = st.selectbox('Which is the middle letter? This is the one that must be included in all words.', letters.upper())
 
-letters = key_letter.lower() + letters.lower() # key letter must be the first in the string
+if letters:
+    key_letter = st.selectbox('Which is the middle letter? This is the one that must be included in all words.', letters.upper())
+
+    letters = key_letter.lower() + letters.lower() # key letter must be the first in the string
 
 if letters:
     good_words = word_finder.word_finder(letters)
