@@ -23,13 +23,13 @@ if letters:
     pangrams = word_finder.find_pangrams(good_words)
     data = dict(pangrams=pangrams, all_words=good_words)
 
-    pangram_expander = st.beta_expander("Pangrams")
+    pangram_expander = st.expander("Pangrams")
     with pangram_expander:
 
         for w in data['pangrams']:
             st.write(w.upper())
 
-    other_word_expander = st.beta_expander("All Words")
+    other_word_expander = st.expander("All Words")
     with other_word_expander:
 
         for w in data['all_words']:
